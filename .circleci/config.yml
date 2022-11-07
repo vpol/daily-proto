@@ -200,13 +200,13 @@ workflows:
   build-and-tag:
     jobs:
       - lint-go:
-        filters:
-          tags:
-            only:
-              - /^v.*/
-          branches:
-            ignore:
-              - /.*/
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore:
+                - /.*/
 
 #  build-and-update:
 #
