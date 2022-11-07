@@ -234,7 +234,8 @@ workflows:
             - sync
           filters:
             tags:
-              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+              only:
+                - /^.*/
             branches:
               ignore: /.*/
 
@@ -244,7 +245,8 @@ workflows:
             - sync
           filters:
             tags:
-              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+              only:
+                - /^.*/
             branches:
               ignore: /.*/
 
@@ -254,7 +256,8 @@ workflows:
             - sync
           filters:
             tags:
-              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+              only:
+                - /^.*/
             branches:
               ignore: /.*/
 
