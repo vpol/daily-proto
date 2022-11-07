@@ -10,4 +10,5 @@ enum ErrorType {
 
 message Error {
   ErrorType type = 1;
+  string value = 2;
 }
