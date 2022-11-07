@@ -187,14 +187,14 @@ workflows:
       - lint-python
 
       - push-python:
-          context: GCR
+          context: github
           requires:
             - lint-python
 
       - lint-ts
 
       - push-ts:
-          context: GCR
+          context: github
           requires:
             - lint-ts
 
