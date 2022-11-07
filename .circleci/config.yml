@@ -37,15 +37,7 @@ jobs:
       - image: docker.io/vpol/daily-proto-docker-runner:latest
 
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "a6:11:e9:4f:42:c2:93:d0:0d:45:f4:c4:50:24:87:e7"
       - checkout
-      - run: |
-          git push --set-upstream origin main
-          git config credential.helper 'cache --timeout=120'
-          git config user.email "vpoluksht@gmail.com"
-          git config user.name "Viktor Poluksht"
       - run: |
           mkdir -p github.com/vpol/daily-proto-python
           cd github.com/vpol/
@@ -54,10 +46,17 @@ jobs:
           cd ../..
           python /build.py python .
       - run: |
+          cd github.com/vpol/daily-proto-python
+          git push --set-upstream origin main
+          git config credential.helper 'cache --timeout=120'
+          git config user.email "vpoluksht@gmail.com"
+          git config user.name "Viktor Poluksht"
           git add .
-          git commit --allow-empty -m "${CIRCLE_SHA1}: protobuf update"
-          git tag 'dev-${CIRCLE_SHA1}'
-          git push -q https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-python --tags
+          git commit --allow-empty -m "${CIRCLE_SHA1:0:7}: protobuf update"
+          export TAG=dev-${CIRCLE_SHA1}
+          git tag $TAG
+          git remote set-url origin https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-python.git
+          git push -q https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-python main --tags
 
   tag-python:
 
@@ -89,9 +88,6 @@ jobs:
       - image: docker.io/vpol/daily-proto-docker-runner:latest
 
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "a6:11:e9:4f:42:c2:93:d0:0d:45:f4:c4:50:24:87:e7"
       - checkout
       - run: |
           mkdir -p github.com/vpol/daily-proto-go
@@ -144,15 +140,7 @@ jobs:
       - image: docker.io/vpol/daily-proto-docker-runner:latest
 
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "a6:11:e9:4f:42:c2:93:d0:0d:45:f4:c4:50:24:87:e7"
       - checkout
-      - run: |
-          git push --set-upstream origin main
-          git config credential.helper 'cache --timeout=120'
-          git config user.email "vpoluksht@gmail.com"
-          git config user.name "Viktor Poluksht"
       - run: |
           mkdir -p github.com/vpol/daily-proto-ts
           cd github.com/vpol/
@@ -160,10 +148,17 @@ jobs:
           cd ../..
           python /build.py ts .
       - run: |
+          cd github.com/vpol/daily-proto-ts
+          git push --set-upstream origin main
+          git config credential.helper 'cache --timeout=120'
+          git config user.email "vpoluksht@gmail.com"
+          git config user.name "Viktor Poluksht"
           git add .
-          git commit --allow-empty -m "${CIRCLE_SHA1}: protobuf update"
-          git tag 'dev-$CIRCLE_SHA1'
-          git push -q https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-ts --tags
+          git commit --allow-empty -m "${CIRCLE_SHA1:0:7}: protobuf update"
+          export TAG=dev-${CIRCLE_SHA1}
+          git tag $TAG
+          git remote set-url origin https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-ts.git
+          git push -q https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-ts main --tags
 
   tag-ts:
 
