@@ -197,17 +197,15 @@ workflows:
 
   version: 2
 
-  tag:
-
-    jobs:
-      - lint-go:
-        filters:
-          tags:
-            only:
-              - /^v.*/
-          branches:
-            ignore:
-              - /.*/
+  jobs:
+    - lint-go:
+      filters:
+        tags:
+          only:
+            - /^v.*/
+        branches:
+          ignore:
+            - /.*/
 
 #  build-and-update:
 #
