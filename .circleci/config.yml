@@ -208,67 +208,67 @@ workflows:
               ignore:
                 - /.*/
 
-#  build-and-update:
-#
-#    jobs:
-#
-#      - lint-go
-#
-#      - push-go:
-#          context: github
-#          requires:
-#            - lint-go
-#
-#      - lint-python
-#
-#      - push-python:
-#          context: github
-#          requires:
-#            - lint-python
-#
-#      - lint-ts
-#
-#      - push-ts:
-#          context: github
-#          requires:
-#            - lint-ts
-#
-#      - sync:
-#          requires:
-#            - push-go
-#            - push-python
-#            - push-ts
-#
-#      - tag-go:
-#          context: github
-#          requires:
-#            - sync
-#          filters:
-#            tags:
-#              only:
-#                - /^.*/
-#            branches:
-#              ignore: /.*/
-#
-#      - tag-python:
-#          context: github
-#          requires:
-#            - sync
-#          filters:
-#            tags:
-#              only:
-#                - /^.*/
-#            branches:
-#              ignore: /.*/
-#
-#      - tag-ts:
-#          context: github
-#          requires:
-#            - sync
-#          filters:
-#            tags:
-#              only:
-#                - /^.*/
-#            branches:
-#              ignore: /.*/
-#
+  build-and-update:
+
+    jobs:
+
+      - lint-go
+
+      - push-go:
+          context: github
+          requires:
+            - lint-go
+
+      - lint-python
+
+      - push-python:
+          context: github
+          requires:
+            - lint-python
+
+      - lint-ts
+
+      - push-ts:
+          context: github
+          requires:
+            - lint-ts
+
+      - sync:
+          requires:
+            - push-go
+            - push-python
+            - push-ts
+
+      - tag-go:
+          context: github
+          requires:
+            - sync
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore: /.*/
+
+      - tag-python:
+          context: github
+          requires:
+            - sync
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore: /.*/
+
+      - tag-ts:
+          context: github
+          requires:
+            - sync
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore: /.*/
+
