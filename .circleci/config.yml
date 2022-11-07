@@ -15,6 +15,18 @@ jobs:
       - run: | 
           echo "sync"
 
+  env:
+    <<: *defaults
+
+    docker:
+      - image: docker.io/vpol/daily-proto-docker-runner:latest
+
+    steps:
+      - checkout
+      - run: |
+          echo $CIRCLE_SHA1
+          echo $CIRCLE_TAG
+
   lint-python:
 
     <<: *defaults
@@ -199,7 +211,7 @@ workflows:
 
   build-and-tag:
     jobs:
-      - lint-go:
+      - env:
           filters:
             tags:
               only:
