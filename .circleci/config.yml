@@ -258,6 +258,8 @@ workflows:
 
     jobs:
 
+      - env
+
       - lint-go:
           filters:
             branches:
