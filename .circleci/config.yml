@@ -208,6 +208,7 @@ jobs:
           mkdir -p github.com/vpol/daily-proto-ts
           cd github.com/vpol/
           git clone https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-ts --depth 20
+          cd daily-proto-ts
           git push --set-upstream origin main
           git config credential.helper 'cache --timeout=120'
           git config user.email "vpoluksht@gmail.com"
@@ -321,6 +322,8 @@ workflows:
             tags:
               only:
                 - /^v.*/
+            branches:
+              ignore: /.*/
 
       - tag-python:
           context: github
@@ -330,6 +333,8 @@ workflows:
             tags:
               only:
                 - /^v.*/
+            branches:
+              ignore: /.*/
 
       - tag-ts:
           context: github
@@ -339,4 +344,5 @@ workflows:
             tags:
               only:
                 - /^v.*/
-
+            branches:
+              ignore: /.*/
