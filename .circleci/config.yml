@@ -227,8 +227,6 @@ workflows:
 
       - tag-go:
           context: github
-          requires:
-            - sync
           filters:
             tags:
               only:
@@ -238,8 +236,6 @@ workflows:
 
       - tag-python:
           context: github
-          requires:
-            - sync
           filters:
             tags:
               only:
@@ -249,8 +245,6 @@ workflows:
 
       - tag-ts:
           context: github
-          requires:
-            - sync
           filters:
             tags:
               only:
