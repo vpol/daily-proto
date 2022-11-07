@@ -232,32 +232,32 @@ workflows:
             - push-ts
 
       - tag-go:
-          context: GCR
+          context: github
           requires:
             - sync
           filters:
             tags:
               only: /^v.*/
-            branches:
-              ignore: /.*/
+#            branches:
+#              ignore: /.*/
 
       - tag-python:
-          context: GCR
+          context: github
           requires:
             - sync
           filters:
             tags:
               only: /^v.*/
-            branches:
-              ignore: /.*/
+#            branches:
+#              ignore: /.*/
 
       - tag-ts:
-          context: GCR
+          context: github
           requires:
             - sync
           filters:
             tags:
               only: /^v.*/
-            branches:
-              ignore: /.*/
+#            branches:
+#              ignore: /.*/
 
