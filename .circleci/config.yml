@@ -199,14 +199,13 @@ workflows:
 
   tag:
 
-    filters:
-      tags:
-        only: /^.*/
-      branches:
-        ignore: /.*/
-
     jobs:
-      - lint-go
+      - lint-go:
+        filters:
+          tags:
+            only: /^.*/
+          branches:
+            ignore: /.*/
 
 
   build-and-update:
