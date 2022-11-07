@@ -222,36 +222,36 @@ jobs:
 
 workflows:
 
-#  tag-only:
-#
-#    jobs:
-#
-#      - tag-go:
-#          context: github
-#          filters:
-#            tags:
-#              only:
-#                - /^v.*/
-#            branches:
-#              ignore: /.*/
-#
-#      - tag-python:
-#          context: github
-#          filters:
-#            tags:
-#              only:
-#                - /^v.*/
-#            branches:
-#              ignore: /.*/
-#
-#      - tag-ts:
-#          context: github
-#          filters:
-#            tags:
-#              only:
-#                - /^v.*/
-#            branches:
-#              ignore: /.*/
+  tag-only:
+
+    jobs:
+
+      - tag-go:
+          context: github
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore: /.*/
+
+      - tag-python:
+          context: github
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore: /.*/
+
+      - tag-ts:
+          context: github
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore: /.*/
 
 
   build-and-update:
@@ -311,34 +311,3 @@ workflows:
             - push-go
             - push-python
             - push-ts
-          filters:
-            tags:
-              only:
-                - /^v.*/
-
-      - tag-go:
-          context: github
-          requires:
-            - sync
-          filters:
-            tags:
-              only:
-                - /^v.*/
-
-      - tag-python:
-          context: github
-          requires:
-            - sync
-          filters:
-            tags:
-              only:
-                - /^v.*/
-
-      - tag-ts:
-          context: github
-          requires:
-            - sync
-          filters:
-            tags:
-              only:
-                - /^v.*/
