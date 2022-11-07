@@ -223,38 +223,40 @@ workflows:
 
   tag-only:
 
-    - tag-go:
-        context: github
-        requires:
-          - sync
-        filters:
-          tags:
-            only:
-              - /^v.*/
-          branches:
-            ignore: /.*/
+    jobs:
 
-    - tag-python:
-        context: github
-        requires:
-          - sync
-        filters:
-          tags:
-            only:
-              - /^v.*/
-          branches:
-            ignore: /.*/
+      - tag-go:
+          context: github
+          requires:
+            - sync
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore: /.*/
 
-    - tag-ts:
-        context: github
-        requires:
-          - sync
-        filters:
-          tags:
-            only:
-              - /^v.*/
-          branches:
-            ignore: /.*/
+      - tag-python:
+          context: github
+          requires:
+            - sync
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore: /.*/
+
+      - tag-ts:
+          context: github
+          requires:
+            - sync
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore: /.*/
 
 
   build-and-update:
