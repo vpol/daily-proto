@@ -197,6 +197,8 @@ jobs:
 
 workflows:
 
+  version: 2.1
+
   tag:
 
     jobs:
