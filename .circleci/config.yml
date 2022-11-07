@@ -310,9 +310,11 @@ workflows:
             - push-python
             - push-ts
           filters:
-            branches:
+            tags:
               only:
-                - main
+                - /^v.*/
+            branches:
+              ignore: /.*/
 
       - tag-go:
           context: github
