@@ -203,10 +203,9 @@ workflows:
       - lint-go:
         filters:
           tags:
-            only: /^.*/
+            only: /^v.*/
           branches:
             ignore: /.*/
-
 
   build-and-update:
 
