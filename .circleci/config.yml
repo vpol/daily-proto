@@ -197,6 +197,18 @@ jobs:
 
 workflows:
 
+  tag:
+
+    filters:
+      tags:
+        only: /^.*/
+      branches:
+        ignore: /.*/
+
+    jobs:
+      - lint-go
+
+
   build-and-update:
 
     jobs:
