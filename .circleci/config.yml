@@ -237,9 +237,9 @@ workflows:
             - sync
           filters:
             tags:
-              only: /^v.*/
-#            branches:
-#              ignore: /.*/
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+            branches:
+              ignore: /.*/
 
       - tag-python:
           context: github
@@ -247,9 +247,9 @@ workflows:
             - sync
           filters:
             tags:
-              only: /^v.*/
-#            branches:
-#              ignore: /.*/
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+            branches:
+              ignore: /.*/
 
       - tag-ts:
           context: github
@@ -257,7 +257,7 @@ workflows:
             - sync
           filters:
             tags:
-              only: /^v.*/
-#            branches:
-#              ignore: /.*/
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+            branches:
+              ignore: /.*/
 
