@@ -26,9 +26,6 @@ jobs:
       - checkout
       - run: |
           python /build.py python .
-      - run: |
-          echo $CIRCLE_TAG
-          echo $CIRCLE_SHA1
 
   push-python:
     <<: *defaults
