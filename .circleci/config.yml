@@ -38,6 +38,8 @@ jobs:
 
     steps:
       - checkout
+      - attach_workspace:
+          at: /tmp/workflows/env
       - run: |
           git clone https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-python
           find ./daily-proto-python -type d -not -path './daily-proto-python/.git*' -not -path './daily-proto-python' | xargs rm  -rf {}
@@ -54,6 +56,11 @@ jobs:
           git tag $TAG
           git remote set-url origin https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-python.git
           git push -q https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-python main --tags
+          echo "PYTHON_HASH=`git rev-parse --verify HEAD`" >> env/python-vars
+      - persist_to_workspace:
+          root: env
+          paths:
+            - python-vars
 
   tag-python:
 
@@ -63,6 +70,9 @@ jobs:
       - image: docker.io/vpol/daily-proto-docker-runner:latest
 
     steps:
+      - attach_workspace:
+          at: /tmp/workflows/env
+      - run: cat env/python-vars >> $BASH_ENV
       - run: |
           echo "tag-python"
 
@@ -86,6 +96,8 @@ jobs:
 
     steps:
       - checkout
+      - attach_workspace:
+          at: /tmp/workflows/env
       - run: |
           mkdir -p github.com/vpol/daily-proto-go
           cd github.com/vpol/
@@ -105,6 +117,11 @@ jobs:
           git tag $TAG
           git remote set-url origin https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-go.git
           git push -q https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-go main --tags
+          echo "GO_HASH=`git rev-parse --verify HEAD`" >> env/go-vars
+      - persist_to_workspace:
+          root: env
+          paths:
+            - go-vars
 
   tag-go:
 
@@ -114,8 +131,11 @@ jobs:
       - image: docker.io/vpol/daily-proto-docker-runner:latest
 
     steps:
+      - attach_workspace:
+          at: /tmp/workflows/env
+      - run: cat env/go-vars >> $BASH_ENV
       - run: |
-          echo "tag-go"
+          echo $GO_HASH
 
   lint-ts:
 
@@ -138,6 +158,8 @@ jobs:
 
     steps:
       - checkout
+      - attach_workspace:
+          at: /tmp/workflows/env
       - run: |
           mkdir -p github.com/vpol/daily-proto-ts
           cd github.com/vpol/
@@ -156,6 +178,11 @@ jobs:
           git tag $TAG
           git remote set-url origin https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-ts.git
           git push -q https://${REPO_USER}:${REPO_TOKEN}@github.com/vpol/daily-proto-ts main --tags
+          echo "TS_HASH=`git rev-parse --verify HEAD`" >> env/ts-vars
+      - persist_to_workspace:
+          root: env
+          paths:
+            - ts-vars
 
   tag-ts:
 
@@ -165,8 +192,11 @@ jobs:
       - image: docker.io/vpol/daily-proto-docker-runner:latest
 
     steps:
+      - attach_workspace:
+          at: /tmp/workflows/env
+      - run: cat env/ts-vars >> $BASH_ENV
       - run: |
-          echo "tag-ts"
+          echo $TS_HASH
 
 workflows:
 
