@@ -222,36 +222,36 @@ jobs:
 
 workflows:
 
-  tag-only:
-
-    jobs:
-
-      - tag-go:
-          context: github
-          filters:
-            tags:
-              only:
-                - /^v.*/
-            branches:
-              ignore: /.*/
-
-      - tag-python:
-          context: github
-          filters:
-            tags:
-              only:
-                - /^v.*/
-            branches:
-              ignore: /.*/
-
-      - tag-ts:
-          context: github
-          filters:
-            tags:
-              only:
-                - /^v.*/
-            branches:
-              ignore: /.*/
+#  tag-only:
+#
+#    jobs:
+#
+#      - tag-go:
+#          context: github
+#          filters:
+#            tags:
+#              only:
+#                - /^v.*/
+#            branches:
+#              ignore: /.*/
+#
+#      - tag-python:
+#          context: github
+#          filters:
+#            tags:
+#              only:
+#                - /^v.*/
+#            branches:
+#              ignore: /.*/
+#
+#      - tag-ts:
+#          context: github
+#          filters:
+#            tags:
+#              only:
+#                - /^v.*/
+#            branches:
+#              ignore: /.*/
 
 
   build-and-update:
